@@ -1,2 +1,2 @@
-Zlib.Portable
-FSharp.Core
+group Build
+    FSharp.Core

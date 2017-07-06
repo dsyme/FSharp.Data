@@ -1,24 +1,35 @@
+frameworks netstandard2.0, net461
 source http://nuget.org/api/v2
-source https://ci.appveyor.com/nuget/sourcelink-helmesfwai2a
 
 redirects: on
 
-nuget Zlib.Portable
-nuget FSharp.Charting
-nuget FSharp.Formatting
-nuget NUnit
-nuget NUnit.Runners
-nuget FsUnit
-nuget FsCheck
-nuget Nancy.Hosting.Self
-nuget FAKE
-nuget SourceLink.Fake
-nuget Nuget.CommandLine
+group Test
+    frameworks: net461
+    source http://nuget.org/api/v2
+    nuget FSharp.Formatting
+    nuget FSharp.Charting
+    nuget FAKE
+    nuget Nuget.CommandLine
+    nuget FSharp.Core 4.2.1
+    nuget Microsoft.NETCore.Platforms 2.0.0-preview2-25405-01
+    nuget NETStandard.Library  2.0.0-preview2-25401-01
+    nuget NETStandard.Library.NETFramework 2.0.0-preview2-25405-01
+    nuget NUnit
+    nuget NUnit.Runners
+    nuget FsUnit
+    nuget FsCheck
+    nuget Nancy.Hosting.Self
 
-github fsharp/FAKE modules/Octokit/Octokit.fsx
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
-github fsprojects/FSharp.TypeProviders.StarterPack src/AssemblyReader.fs
-github fsprojects/FSharp.TypeProviders.StarterPack src/AssemblyReaderReflection.fs
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypesContext.fs
-github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypesTesting.fs
+group Build
+    frameworks: netstandard2.0
+    source http://nuget.org/api/v2
+
+    nuget FSharp.Core 4.2.1
+
+    github fsharp/FAKE modules/Octokit/Octokit.fsx
+    github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi
+    github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fs
+    github fsprojects/FSharp.TypeProviders.StarterPack src/AssemblyReader.fs
+    github fsprojects/FSharp.TypeProviders.StarterPack src/AssemblyReaderReflection.fs
+    github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypesContext.fs
+    github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypesTesting.fs

@@ -19,15 +19,6 @@
       <group>
         <dependency id="FSharp.Core" version="4.0.0.1"/>
       </group>
-      <group targetFramework="portable-net45+sl50+netcore45">
-        <dependency id="Zlib.Portable" version="1.11.0" />
-      </group>
-      <group targetFramework="portable-net45+netcore45">
-        <dependency id="Zlib.Portable" version="1.11.0" />
-      </group>
-      <group targetFramework="portable-net45+netcore45+wpa81+wp8">
-        <dependency id="Zlib.Portable" version="1.11.0" />
-      </group>
       <group targetFramework="net40" />
     </dependencies>
     <references>
@@ -38,30 +29,12 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="..\bin\FSharp.Data.dll" target="lib/net40" />
-    <file src="..\bin\FSharp.Data.pdb" target="lib/net40" />
-    <file src="..\bin\FSharp.Data.xml" target="lib/net40" />
-    <file src="..\bin\FSharp.Data.DesignTime.dll" target="lib/net40" />
-    <file src="..\bin\FSharp.Data.DesignTime.pdb" target="lib/net40" />
-    <file src="..\bin\FSharp.Data.DesignTime.xml" target="lib/net40" />
-    <file src="..\bin\portable47\FSharp.Data.dll" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable47\FSharp.Data.pdb" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable47\FSharp.Data.xml" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable47\FSharp.Data.DesignTime.dll" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable47\FSharp.Data.DesignTime.pdb" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable47\FSharp.Data.DesignTime.xml" target="lib/portable-net45+sl50+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.dll" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.pdb" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.xml" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.DesignTime.dll" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.DesignTime.pdb" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable7\FSharp.Data.DesignTime.xml" target="lib/portable-net45+netcore45" />
-    <file src="..\bin\portable259\FSharp.Data.dll" target="lib/portable-net45+netcore45+wpa81+wp8" />
-    <file src="..\bin\portable259\FSharp.Data.pdb" target="lib/portable-net45+netcore45+wpa81+wp8" />
-    <file src="..\bin\portable259\FSharp.Data.xml" target="lib/portable-net45+netcore45+wpa81+wp8" />
-    <file src="..\bin\portable259\FSharp.Data.DesignTime.dll" target="lib/portable-net45+netcore45+wpa81+wp8" />
-    <file src="..\bin\portable259\FSharp.Data.DesignTime.pdb" target="lib/portable-net45+netcore45+wpa81+wp8" />
-    <file src="..\bin\portable259\FSharp.Data.DesignTime.xml" target="lib/portable-net45+netcore45+wpa81+wp8" />
+    <file src="..\bin\FSharp.Data.dll" target="lib/netstandard2.0" />
+    <file src="..\bin\FSharp.Data.pdb" target="lib/netstandard2.0" />
+    <file src="..\bin\FSharp.Data.xml" target="lib/netstandard2.0" />
+    <file src="..\bin\FSharp.Data.DesignTime.dll" target="lib/netstandard2.0" />
+    <file src="..\bin\FSharp.Data.DesignTime.pdb" target="lib/netstandard2.0" />
+    <file src="..\bin\FSharp.Data.DesignTime.xml" target="lib/netstandard2.0" />
     <file src="linqpad-samples\*.*" target="linqpad-samples" />
   </files>
 </package>

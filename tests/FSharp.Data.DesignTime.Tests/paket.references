@@ -1,5 +1,6 @@
-FSharp.Charting
-FSharp.Formatting
-FsUnit
-NUnit
-NUnit.Runners
+group Test
+  FSharp.Charting
+  FSharp.Formatting
+  FsUnit
+  NUnit
+  NUnit.Runners

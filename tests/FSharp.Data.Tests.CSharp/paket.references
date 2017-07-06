@@ -1,2 +1,3 @@
-NUnit
-FSharp.Core
+group Test
+  NUnit
+  FSharp.Core

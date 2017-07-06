@@ -1,3 +1,6 @@
+#### 3.0.0-alpha - Unreleased
+* .NET Standard 2.0 only for both runtime and design-time DLLs
+
 #### 2.3.4 - Unreleased
 * Fix css selectors not working outside the body element.
 

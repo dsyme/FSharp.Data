@@ -2,13 +2,8 @@
 // FAKE build script 
 // --------------------------------------------------------------------------------------
 
-#I "packages/FAKE/tools/"
+#I "packages/test/FAKE/tools/"
 #r "FakeLib.dll"
-
-#if MONO
-#else
-#load "packages/SourceLink.Fake/tools/SourceLink.fsx"
-#endif
 
 open System
 open System.IO
@@ -61,15 +56,8 @@ Target "AssemblyInfo" <| fun () ->
         let replace (oldValue:string) newValue (str:string) = str.Replace(oldValue, newValue)
         let title = 
             Path.GetFileNameWithoutExtension file
-            |> replace ".Portable259" ""
-            |> replace ".Portable47" ""
-            |> replace ".Portable7" ""
             |> replace "AssemblyInfo" "FSharp.Data"
-        let versionSuffix =
-            if file.Contains ".Portable259" then ".259"
-            elif file.Contains ".Portable47" then ".47"
-            elif file.Contains ".Portable7" then ".7"
-            else ".0"
+        let versionSuffix =".0"
         let version = release.AssemblyVersion + versionSuffix
         CreateFSharpAssemblyInfo file
            [ Attribute.Title title
@@ -98,14 +86,20 @@ Target "CleanInternetCaches" <| fun () ->
 // Build library & test projects
 
 Target "Build" <| fun () ->
-    !! "FSharp.Data.sln"
-    |> MSBuildRelease "" "Rebuild"
-    |> ignore
+    DotNetCli.Build (fun p -> { p with Configuration = "Release"; Project = "src/FSharp.Data.DesignTime.fsproj" }) 
+    DotNetCli.Build (fun p -> { p with Configuration = "Release"; Project = "src/FSharp.Data.fsproj" }) 
 
 Target "BuildTests" <| fun () ->
-    !! "FSharp.Data.Tests.sln"
+    !! "tests/FSharp.Data.Tests/FSharp.Data.Tests.fsproj"
     |> MSBuildReleaseExt "" (if isLocalBuild then [] else ["DefineConstants","BUILD_SERVER"]) "Rebuild"
     |> ignore
+
+//    DotNetCli.Build (fun p -> { p with Configuration = "Release"; Project = "tests/FSharp.Data.Tests/FSharp.Data.Tests.fsproj" }) 
+//    DotNetCli.Build (fun p -> { p with Configuration = "Release"; Project = "tests/FSharp.Data.DesignTime.Tests/FSharp.Data.DesignTime.Tests.fsproj" }) 
+//    DotNetCli.Build (fun p -> { p with Configuration = "Release"; Project = "tests/FSharp.Data.Tests.CSharp/FSharp.Data.Tests.CSharp.csproj" }) 
+//    !! "FSharp.Data.Tests.sln"
+//    |> MSBuildReleaseExt "" (if isLocalBuild then [] else ["DefineConstants","BUILD_SERVER"]) "Rebuild"
+//    |> ignore
 
 Target "BuildConsoleTests" <| fun () ->
     !! "TestApps.Console.sln"
@@ -134,32 +128,6 @@ Target "RunConsoleTests" (fun _ ->
     [ for consoleTest in !! "tests/TestApps/*/bin/Release/*.exe" -> consoleTest, "" ]
     |> ProcessTestRunner.RunConsoleTests (fun p -> { p with TimeOut = TimeSpan.FromMinutes 1. } ))
 
-// --------------------------------------------------------------------------------------
-// Source link the pdb files
-
-#if MONO
-
-Target "SourceLink" <| id
-
-#else
-
-open SourceLink
-
-Target "SourceLink" <| fun () ->
-    for file in !! "src/*.fsproj" do
-        let proj = VsProj.Load file ["Configuration","Release"; "VisualStudioVersion","12.0"]
-        let files = SetBaseDir __SOURCE_DIRECTORY__ proj.Compiles -- "**/paket-files/**"
-        let url = sprintf "%s/%s/{0}/%%var2%%" gitRaw gitName
-        SourceLink.Index files proj.OutputFilePdb __SOURCE_DIRECTORY__ url
-    CopyFiles "bin" (!! "src/bin/Release/FSharp.Data.*")
-    CopyFiles "bin/portable7" (!! "src/bin/portable7/Release/FSharp.Data.*")
-    CopyFiles "bin/portable7" (!! "src/bin/Release/FSharp.Data.DesignTime.*")
-    CopyFiles "bin/portable47" (!! "src/bin/portable47/Release/FSharp.Data.*")    
-    CopyFiles "bin/portable47" (!! "src/bin/Release/FSharp.Data.DesignTime.*")
-    CopyFiles "bin/portable259" (!! "src/bin/portable259/Release/FSharp.Data.*")    
-    CopyFiles "bin/portable259" (!! "src/bin/Release/FSharp.Data.DesignTime.*")
-
-#endif
 
 // --------------------------------------------------------------------------------------
 // Build a NuGet package
@@ -283,10 +251,6 @@ Target "Help" <| fun () ->
     printfn ""
     printfn "  Other targets:"
     printfn "  * CleanInternetCaches"
-#if MONO
-#else
-    printfn "  * SourceLink (requires autocrlf=input)"
-#endif
     printfn ""
 
 Target "All" DoNothing
