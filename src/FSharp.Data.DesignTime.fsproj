@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <DefineConstants>$(DefineConstants);NO_GENERATIVE</DefineConstants>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <OutputPath>../bin</OutputPath>
   </PropertyGroup>
   <ItemGroup>
@@ -15,12 +16,12 @@
     <Compile Include="CommonRuntime\NameUtils.fs" />
     <Compile Include="CommonRuntime\StructuralTypes.fs" />
     <Compile Include="CommonRuntime\StructuralInference.fs" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fsi" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fs" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\AssemblyReader.fs" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\AssemblyReaderReflection.fs" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypesContext.fs" />
-    <Compile Include="..\paket-files\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypesTesting.fs" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fsi" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypes.fs" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\AssemblyReader.fs" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\AssemblyReaderReflection.fs" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypesContext.fs" />
+    <Compile Include="..\paket-files\build\fsprojects\FSharp.TypeProviders.StarterPack\src\ProvidedTypesTesting.fs" />
     <Compile Include="CommonProviderImplementation\QuotationBuilder.fs" />
     <Compile Include="CommonProviderImplementation\AssemblyResolver.fs" />
     <Compile Include="CommonProviderImplementation\Helpers.fs" />

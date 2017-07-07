@@ -21,10 +21,12 @@ group Test
     nuget Nancy.Hosting.Self
 
 group Build
-    frameworks: netstandard2.0
+    frameworks: netstandard1.6
     source http://nuget.org/api/v2
 
     nuget FSharp.Core 4.2.1
+    nuget Zlib.Portable
+
 
     github fsharp/FAKE modules/Octokit/Octokit.fsx
     github fsprojects/FSharp.TypeProviders.StarterPack src/ProvidedTypes.fsi

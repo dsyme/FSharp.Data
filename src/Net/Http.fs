@@ -647,22 +647,14 @@ module private HttpHelpers =
     // No inlining to don't cause a depency on ZLib.Portable when a PCL version of FSharp.Data is used in full .NET
     [<MethodImpl(MethodImplOptions.NoInlining)>]
     let decompressGZip (memoryStream:MemoryStream) =
-#if FX_NO_WEBREQUEST_AUTOMATICDECOMPRESSION
-        new MemoryStream(Ionic.Zlib.GZipStream.UncompressBuffer(memoryStream.ToArray()))
-#else
         failwith "Automatic gzip decompression failed"
         memoryStream
-#endif
 
     // No inlining to don't cause a depency on ZLib.Portable when a PCL version of FSharp.Data is used in full .NET
     [<MethodImpl(MethodImplOptions.NoInlining)>]
     let decompressDeflate (memoryStream:MemoryStream) =
-#if FX_NO_WEBREQUEST_AUTOMATICDECOMPRESSION
-        new MemoryStream(Ionic.Zlib.DeflateStream.UncompressBuffer(memoryStream.ToArray()))
-#else
         failwith "Automatic deflate decompression failed"
         memoryStream
-#endif
 
     let toHttpResponse forceText responseUrl statusCode contentType contentEncoding
                        characterSet responseEncodingOverride cookies headers stream = async {
@@ -711,21 +703,7 @@ module private HttpHelpers =
                  Cookies = cookies }
     }
 
-#if FX_NO_WEBREQUEST_AUTOMATICDECOMPRESSION
-    let isWindowsPhone =
-        let runningOnMono = Type.GetType("Mono.Runtime") <> null
-        if runningOnMono then
-            false
-        else
-            match getProperty typeof<Environment> null "OSVersion" with
-            | Some osVersion ->
-                match osVersion?Version with
-                | Some (version:Version) ->
-                    // Latest Windows is 6.x, so OS >= 8 will be Windows Phone
-                    version.Major >= 8
-                | _ -> false
-            | _ -> false
-#endif
+    let isWindowsPhone = false
 
 module internal CookieHandling = 
 
@@ -855,13 +833,6 @@ type Http private() =
 
         let nativeAutomaticDecompression = ref true
 
-    #if FX_NO_WEBREQUEST_AUTOMATICDECOMPRESSION
-        if isWindowsPhone || not (req?AutomaticDecompression <- 3) then 
-            nativeAutomaticDecompression := false
-            req.Headers.[HeaderEnum.AcceptEncoding] <- "gzip,deflate"
-    #else
-        req.AutomaticDecompression <- DecompressionMethods.GZip ||| DecompressionMethods.Deflate
-    #endif
 
         // set cookies
         let cookieContainer = defaultArg cookieContainer <| CookieContainer()

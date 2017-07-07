@@ -134,7 +134,7 @@ let private hasBrokenDotNetUri =
                 //  so instead of using reflection perform a one off function test.
 
                 let uri = new Uri("http://google.com/%2F")
-                uri.ToString().EndsWith("%2F", StringComparison.InvariantCulture)
+                uri.ToString().EndsWith("%2F")
 
 let enableUriSlashes =
     if isMono then id //purifierMono.Force()

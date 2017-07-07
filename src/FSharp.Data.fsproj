@@ -1,7 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <OutputPath>../bin</OutputPath>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBRESPONSE_IS_FROM_CACHE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBRESPONSE_IS_MUTUALLY_AUTHENTICATED</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBRESPONSE_CLOSE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_CONTENTLENGTH</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_CONNECTION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_DATE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_EXPECT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_HOST</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_USERAGENT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_TIMEOUT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_AUTOMATICDECOMPRESSION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_REGEX_COMPILATION</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBRESPONSE_CHARACTERSET</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_IFMODIFIEDSINCE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_RANGE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_REFERER</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_USERAGENT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_LOCAL_FILESYSTEM</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_CONCURRENT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NO_WEBREQUEST_USERAGENT</DefineConstants>
+    <DefineConstants>$(DefineConstants);FX_NET_CORE_REFLECTION</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Net\UriUtils.fs" />
@@ -33,6 +54,7 @@
     <Compile Include="Runtime.fs" />
     <Compile Include="AssemblyInfo.fs" />
     <None Include="paket.references" />
+<!--    <Reference Include="Zlib.Portable"><HintPath>..\packages\build\Zlib.Portable\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath><Private>true</Private></Reference> -->
   </ItemGroup>
   <Import Project="..\.paket\Paket.Restore.targets" />
 </Project>
